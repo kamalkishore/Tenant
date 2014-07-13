@@ -60,6 +60,9 @@
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="SubmitTenantDetails.aspx" />
+    <Content Include="ShowDetails.aspx" />
+    <Content Include="AddMeterReading.aspx" />
+    <Content Include="BillPayment.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +86,27 @@
     </Compile>
     <Compile Include="SubmitTenantDetails.aspx.designer.cs">
       <DependentUpon>SubmitTenantDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShowDetails.aspx.cs">
+      <DependentUpon>ShowDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowDetails.aspx.designer.cs">
+      <DependentUpon>ShowDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddMeterReading.aspx.cs">
+      <DependentUpon>AddMeterReading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddMeterReading.aspx.designer.cs">
+      <DependentUpon>AddMeterReading.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BillPayment.aspx.cs">
+      <DependentUpon>BillPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillPayment.aspx.designer.cs">
+      <DependentUpon>BillPayment.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

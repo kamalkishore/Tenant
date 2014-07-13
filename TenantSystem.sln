@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TenantSystem", "TenantSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{3969AC25-CE56-481A-A5A1-61F00BD30F99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TenantSystemUnitTest", "TenantSystemUnitTest\TenantSystemUnitTest.csproj", "{D6D4C39B-8094-4129-A039-651F5B4DFF3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{3969AC25-CE56-481A-A5A1-61F00BD30F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3969AC25-CE56-481A-A5A1-61F00BD30F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3969AC25-CE56-481A-A5A1-61F00BD30F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D4C39B-8094-4129-A039-651F5B4DFF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D4C39B-8094-4129-A039-651F5B4DFF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D4C39B-8094-4129-A039-651F5B4DFF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D4C39B-8094-4129-A039-651F5B4DFF3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
