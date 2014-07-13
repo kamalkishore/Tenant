@@ -9,6 +9,6 @@ namespace TenantSystem
 {
     public static class Utility
     {
-       public static string connectionString = ConfigurationManager.ConnectionStrings["Tenant"].ToString();
+       public static string ConnectionString = ConfigurationManager.ConnectionStrings["Tenant"].ToString();
     }
 }

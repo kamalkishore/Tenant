@@ -12,7 +12,7 @@ namespace TenantSystem
     {
         public bool Add(TenantMeterReading tenantMeterReading)
         {
-            using (var connection = new SqlConnection(Utility.connectionString))
+            using (var connection = new SqlConnection(Utility.ConnectionString))
             {
                 var cmd = new SqlCommand("INSERT INTO TenantMeterReading (tenantId, meterReading, createdDate) VALUES (@tenantId,@meterReading, @createdDate)")
                     {
@@ -41,7 +41,7 @@ namespace TenantSystem
         public int GetPreviousMonthMeterReading(int tenantId)
         {
             TenantMeterReading temp;
-            using (var connection = new SqlConnection(Utility.connectionString))
+            using (var connection = new SqlConnection(Utility.ConnectionString))
             {
                 var cmd = new SqlCommand("Select top 1 * from TenantMeterReading where tenantid = @tid order by tenantid desc")
                 {

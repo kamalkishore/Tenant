@@ -12,7 +12,7 @@ namespace TenantSystem
     {
         public bool Add(BillInvoice billInvoice)
         {
-            using (var connection = new SqlConnection(Utility.connectionString))
+            using (var connection = new SqlConnection(Utility.ConnectionString))
             {
                 var cmd = new SqlCommand("INSERT INTO BillInvoice (tenantId, currentMonthPayableAmount, PendingAmount, LastBillPaidAmount, LastBillPaidDate, createdDate) VALUES (@tenantId, @currentMonthPayableAmount, @PendingAmount, @LastBillPaidAmount, @LastBillPaidDate, @createdDate)")
                 {

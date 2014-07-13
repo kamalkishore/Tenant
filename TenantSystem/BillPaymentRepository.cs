@@ -12,7 +12,7 @@ namespace TenantSystem
     {
         public bool Add(BillPayment billPayment)
         {
-            using (var connection = new SqlConnection(Utility.connectionString))
+            using (var connection = new SqlConnection(Utility.ConnectionString))
             {
                 var cmd = new SqlCommand("INSERT INTO BillPayment (tenantId, paymentDate, amountPaid, createdDate) VALUES (@tenantId, @paymentDate, @amountPaid, @createdDate)")
                 {
@@ -47,7 +47,7 @@ namespace TenantSystem
         public BillPayment GetLastBillPaid(int tenantId)
         {
             BillPayment billPayment;
-            using (var connection = new SqlConnection(Utility.connectionString))
+            using (var connection = new SqlConnection(Utility.ConnectionString))
             {
                 var cmd = new SqlCommand("Select top 1 * from BillPayment where tenantid = @tid order by id desc")
                 {
