@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TenantSystem
 {
@@ -14,11 +11,13 @@ namespace TenantSystem
         {
             using (var connection = new SqlConnection(Utility.ConnectionString))
             {
-                var cmd = new SqlCommand("INSERT INTO BillInvoice (tenantId, currentMonthPayableAmount, PendingAmount, LastBillPaidAmount, LastBillPaidDate, createdDate) VALUES (@tenantId, @currentMonthPayableAmount, @PendingAmount, @LastBillPaidAmount, @LastBillPaidDate, @createdDate)")
-                {
-                    CommandType = CommandType.Text,
-                    Connection = connection
-                };
+                var cmd =
+                    new SqlCommand(
+                        "INSERT INTO BillInvoice (tenantId, curentMonthPayableAmount, PendingAmount, LastBillPaidAmount, LastBillPaidDate, createdDate) VALUES (@tenantId, @currentMonthPayableAmount, @PendingAmount, @LastBillPaidAmount, @LastBillPaidDate, @createdDate)")
+                        {
+                            CommandType = CommandType.Text,
+                            Connection = connection
+                        };
                 cmd.Parameters.AddWithValue("@tenantId", billInvoice.TenantId);
                 cmd.Parameters.AddWithValue("@currentMonthPayableAmount", billInvoice.CurrentMonthPayamentAmount);
                 cmd.Parameters.AddWithValue("@PendingAmount", billInvoice.PendingAmount);
@@ -43,9 +42,42 @@ namespace TenantSystem
             return true;
         }
 
-        public bool Get()
+        public DataTable GetInvoiceDetails(int tenantId)
         {
-            return true;
+            DataTable dt;
+            //BillInvoice billInvoice;
+            using (var connection = new SqlConnection(Utility.ConnectionString))
+            {
+                var cmd = new SqlCommand("Select * from TenantElectricityInvoice where tenantid = @tid")
+                    {
+                        CommandType = CommandType.Text,
+                        Connection = connection
+                    };
+                cmd.Parameters.AddWithValue("@tId", tenantId);
+                //onnection.Open();.
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet dataSet = new DataSet();
+                da.Fill(dataSet);
+                dt = dataSet.Tables[0];
+                //billInvoice = GetMostRecentInvoice(dataSet);
+            }
+
+            return dt;
+        }
+
+
+        private BillInvoice GetMostRecentInvoice(DataSet ds)
+        {
+            return (from DataRow row in ds.Tables[0].Rows
+                    select new BillInvoice()
+                        {
+                            Id = Convert.ToInt32(row["id"]),
+                            TenantId = Convert.ToInt32(row["TenantId"]),
+                            CurrentMonthPayamentAmount = Convert.ToInt32(row["CurentMonthPayableAmount"]),
+                            LastBillPaid = Convert.ToDouble(row["LastBillPaidAmount"]),
+                            PendingAmount = Convert.ToDouble(row["PendingAmount"]),
+                            LastBillPaidDate = Convert.ToDateTime(row["LastBillPaidDate"])
+                        }).FirstOrDefault();
         }
     }
 }

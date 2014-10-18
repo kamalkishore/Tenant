@@ -39,6 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -57,6 +59,32 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.daterangepicker\ui.daterangepicker.css" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="ShowInvoice.aspx" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.daterangepicker\date-en-US.js" />
+    <Content Include="Scripts\jquery.daterangepicker\date.js" />
+    <Content Include="Scripts\jquery.daterangepicker\daterangepicker.jQuery.js" />
+    <Content Include="Scripts\jquery.daterangepicker\time.js" />
+    <Content Include="Scripts\TenantValidation.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="SubmitTenantDetails.aspx" />
@@ -108,9 +136,33 @@
     <Compile Include="BillPayment.aspx.designer.cs">
       <DependentUpon>BillPayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShowInvoice.aspx.cs">
+      <DependentUpon>ShowInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowInvoice.aspx.designer.cs">
+      <DependentUpon>ShowInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TenantDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TenantDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site1.Master" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="TenantDatabaseDataSet.xsc">
+      <DependentUpon>TenantDatabaseDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="TenantDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TenantDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="TenantDatabaseDataSet.xss">
+      <DependentUpon>TenantDatabaseDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -123,6 +175,9 @@
       <Project>{a32d9724-28db-4e20-846d-32bcf34335c8}</Project>
       <Name>TenantSystem</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

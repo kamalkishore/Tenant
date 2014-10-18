@@ -55,7 +55,7 @@ namespace TenantSystem
                     Connection = connection
                 };
                 cmd.Parameters.AddWithValue("@tId", tenantId);
-                //onnection.Open();
+                //onnection.Open();.
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataSet dataSet = new DataSet();
                 da.Fill(dataSet);
@@ -69,12 +69,12 @@ namespace TenantSystem
         {
             return (from DataRow row in ds.Tables[0].Rows
                     select new BillPayment()
-                    {
-                        Id = Convert.ToInt32(row["id"]),
-                        TenantId = Convert.ToInt32(row["TenantId"]),
-                        AmountPaid = Convert.ToInt32(row["AmountPaid"]),
-                        PaymentDate = Convert.ToDateTime(row["PaymentDate"])
-                    }).FirstOrDefault() ?? null;
+                        {
+                            Id = Convert.ToInt32(row["id"]),
+                            TenantId = Convert.ToInt32(row["TenantId"]),
+                            AmountPaid = Convert.ToInt32(row["AmountPaid"]),
+                            PaymentDate = Convert.ToDateTime(row["PaymentDate"])
+                        }).FirstOrDefault();
         }
     }
 }

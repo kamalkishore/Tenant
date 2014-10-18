@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TenantDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TenantDatabaseModelStoreContainer">
+          <EntitySet Name="BillInvoice" EntityType="TenantDatabaseModel.Store.BillInvoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BillPayable" EntityType="TenantDatabaseModel.Store.BillPayable" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BillPayment" EntityType="TenantDatabaseModel.Store.BillPayment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Building" EntityType="TenantDatabaseModel.Store.Building" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tenant" EntityType="TenantDatabaseModel.Store.Tenant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TenantMeterReading" EntityType="TenantDatabaseModel.Store.TenantMeterReading" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__BillInvoi__Tenan__2B0A656D" Association="TenantDatabaseModel.Store.FK__BillInvoi__Tenan__2B0A656D">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="BillInvoice" EntitySet="BillInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillPayab__Tenan__1CBC4616" Association="TenantDatabaseModel.Store.FK__BillPayab__Tenan__1CBC4616">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="BillPayable" EntitySet="BillPayable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillPayme__Tenan__2180FB33" Association="TenantDatabaseModel.Store.FK__BillPayme__Tenan__2180FB33">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="BillPayment" EntitySet="BillPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tenant__Building__17F790F9" Association="TenantDatabaseModel.Store.FK__Tenant__Building__17F790F9">
+            <End Role="Building" EntitySet="Building" />
+            <End Role="Tenant" EntitySet="Tenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TenantMet__Tenan__2645B050" Association="TenantDatabaseModel.Store.FK__TenantMet__Tenan__2645B050">
+            <End Role="Tenant" EntitySet="Tenant" />
+            <End Role="TenantMeterReading" EntitySet="TenantMeterReading" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BillInvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="int" />
+          <Property Name="CurentMonthPayableAmount" Type="int" />
+          <Property Name="PendingAmount" Type="int" />
+          <Property Name="LastBillPaidAmount" Type="int" />
+          <Property Name="LastBillPaidDate" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BillPayable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="int" />
+          <Property Name="UnitConsumed" Type="int" />
+          <Property Name="PricePerUnit" Type="int" />
+          <Property Name="AmountPayable" Type="int" />
+          <Property Name="DateOfMeterReading" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BillPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="int" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="AmountPaid" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+          </Key>
+          <Property Name="BuildingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingName" Type="int" />
+          <Property Name="NumberOfFloor" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="TenantId" />
+          </Key>
+          <Property Name="TenantId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar(max)" />
+          <Property Name="LastName" Type="varchar(max)" />
+          <Property Name="PhoneNumber" Type="varchar(max)" />
+          <Property Name="FloorNumber" Type="varchar(max)" />
+          <Property Name="BuildingId" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TenantMeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="int" />
+          <Property Name="MeterReading" Type="int" />
+          <Property Name="DateOfMeterReading" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__BillInvoi__Tenan__2B0A656D">
+          <End Role="Tenant" Type="TenantDatabaseModel.Store.Tenant" Multiplicity="0..1" />
+          <End Role="BillInvoice" Type="TenantDatabaseModel.Store.BillInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillInvoice">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillPayab__Tenan__1CBC4616">
+          <End Role="Tenant" Type="TenantDatabaseModel.Store.Tenant" Multiplicity="0..1" />
+          <End Role="BillPayable" Type="TenantDatabaseModel.Store.BillPayable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillPayable">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillPayme__Tenan__2180FB33">
+          <End Role="Tenant" Type="TenantDatabaseModel.Store.Tenant" Multiplicity="0..1" />
+          <End Role="BillPayment" Type="TenantDatabaseModel.Store.BillPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillPayment">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tenant__Building__17F790F9">
+          <End Role="Building" Type="TenantDatabaseModel.Store.Building" Multiplicity="0..1" />
+          <End Role="Tenant" Type="TenantDatabaseModel.Store.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="BuildingId" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TenantMet__Tenan__2645B050">
+          <End Role="Tenant" Type="TenantDatabaseModel.Store.Tenant" Multiplicity="0..1" />
+          <End Role="TenantMeterReading" Type="TenantDatabaseModel.Store.TenantMeterReading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="TenantMeterReading">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetLastMeterReading" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenantId" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TenantDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TenantDatabaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="BillInvoices" EntityType="TenantDatabaseModel.BillInvoice" />
+          <EntitySet Name="BillPayables" EntityType="TenantDatabaseModel.BillPayable" />
+          <EntitySet Name="BillPayments" EntityType="TenantDatabaseModel.BillPayment" />
+          <EntitySet Name="Buildings" EntityType="TenantDatabaseModel.Building" />
+          <EntitySet Name="Tenants" EntityType="TenantDatabaseModel.Tenant" />
+          <EntitySet Name="TenantMeterReadings" EntityType="TenantDatabaseModel.TenantMeterReading" />
+          <AssociationSet Name="FK__BillInvoi__Tenan__2B0A656D" Association="TenantDatabaseModel.FK__BillInvoi__Tenan__2B0A656D">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="BillInvoice" EntitySet="BillInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillPayab__Tenan__1CBC4616" Association="TenantDatabaseModel.FK__BillPayab__Tenan__1CBC4616">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="BillPayable" EntitySet="BillPayables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillPayme__Tenan__2180FB33" Association="TenantDatabaseModel.FK__BillPayme__Tenan__2180FB33">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="BillPayment" EntitySet="BillPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tenant__Building__17F790F9" Association="TenantDatabaseModel.FK__Tenant__Building__17F790F9">
+            <End Role="Building" EntitySet="Buildings" />
+            <End Role="Tenant" EntitySet="Tenants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TenantMet__Tenan__2645B050" Association="TenantDatabaseModel.FK__TenantMet__Tenan__2645B050">
+            <End Role="Tenant" EntitySet="Tenants" />
+            <End Role="TenantMeterReading" EntitySet="TenantMeterReadings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BillInvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="Int32" />
+          <Property Name="CurentMonthPayableAmount" Type="Int32" />
+          <Property Name="PendingAmount" Type="Int32" />
+          <Property Name="LastBillPaidAmount" Type="Int32" />
+          <Property Name="LastBillPaidDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tenant" Relationship="TenantDatabaseModel.FK__BillInvoi__Tenan__2B0A656D" FromRole="BillInvoice" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="BillPayable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="Int32" />
+          <Property Name="UnitConsumed" Type="Int32" />
+          <Property Name="PricePerUnit" Type="Int32" />
+          <Property Name="AmountPayable" Type="Int32" />
+          <Property Name="DateOfMeterReading" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tenant" Relationship="TenantDatabaseModel.FK__BillPayab__Tenan__1CBC4616" FromRole="BillPayable" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="BillPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="Int32" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="AmountPaid" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tenant" Relationship="TenantDatabaseModel.FK__BillPayme__Tenan__2180FB33" FromRole="BillPayment" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+          </Key>
+          <Property Name="BuildingId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingName" Type="Int32" />
+          <Property Name="NumberOfFloor" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tenants" Relationship="TenantDatabaseModel.FK__Tenant__Building__17F790F9" FromRole="Building" ToRole="Tenant" />
+        </EntityType>
+        <EntityType Name="Tenant">
+          <Key>
+            <PropertyRef Name="TenantId" />
+          </Key>
+          <Property Name="TenantId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="FloorNumber" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="BuildingId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BillInvoices" Relationship="TenantDatabaseModel.FK__BillInvoi__Tenan__2B0A656D" FromRole="Tenant" ToRole="BillInvoice" />
+          <NavigationProperty Name="BillPayables" Relationship="TenantDatabaseModel.FK__BillPayab__Tenan__1CBC4616" FromRole="Tenant" ToRole="BillPayable" />
+          <NavigationProperty Name="BillPayments" Relationship="TenantDatabaseModel.FK__BillPayme__Tenan__2180FB33" FromRole="Tenant" ToRole="BillPayment" />
+          <NavigationProperty Name="Building" Relationship="TenantDatabaseModel.FK__Tenant__Building__17F790F9" FromRole="Tenant" ToRole="Building" />
+          <NavigationProperty Name="TenantMeterReadings" Relationship="TenantDatabaseModel.FK__TenantMet__Tenan__2645B050" FromRole="Tenant" ToRole="TenantMeterReading" />
+        </EntityType>
+        <EntityType Name="TenantMeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantId" Type="Int32" />
+          <Property Name="MeterReading" Type="Int32" />
+          <Property Name="DateOfMeterReading" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tenant" Relationship="TenantDatabaseModel.FK__TenantMet__Tenan__2645B050" FromRole="TenantMeterReading" ToRole="Tenant" />
+        </EntityType>
+        <Association Name="FK__BillInvoi__Tenan__2B0A656D">
+          <End Role="Tenant" Type="TenantDatabaseModel.Tenant" Multiplicity="0..1" />
+          <End Role="BillInvoice" Type="TenantDatabaseModel.BillInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillInvoice">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillPayab__Tenan__1CBC4616">
+          <End Role="Tenant" Type="TenantDatabaseModel.Tenant" Multiplicity="0..1" />
+          <End Role="BillPayable" Type="TenantDatabaseModel.BillPayable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillPayable">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillPayme__Tenan__2180FB33">
+          <End Role="Tenant" Type="TenantDatabaseModel.Tenant" Multiplicity="0..1" />
+          <End Role="BillPayment" Type="TenantDatabaseModel.BillPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="BillPayment">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tenant__Building__17F790F9">
+          <End Role="Building" Type="TenantDatabaseModel.Building" Multiplicity="0..1" />
+          <End Role="Tenant" Type="TenantDatabaseModel.Tenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="BuildingId" />
+            </Principal>
+            <Dependent Role="Tenant">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TenantMet__Tenan__2645B050">
+          <End Role="Tenant" Type="TenantDatabaseModel.Tenant" Multiplicity="0..1" />
+          <End Role="TenantMeterReading" Type="TenantDatabaseModel.TenantMeterReading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenant">
+              <PropertyRef Name="TenantId" />
+            </Principal>
+            <Dependent Role="TenantMeterReading">
+              <PropertyRef Name="TenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TenantDatabaseModelStoreContainer" CdmEntityContainer="TenantDatabaseEntities">
+          <EntitySetMapping Name="BillInvoices">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.BillInvoice">
+              <MappingFragment StoreEntitySet="BillInvoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="CurentMonthPayableAmount" ColumnName="CurentMonthPayableAmount" />
+                <ScalarProperty Name="PendingAmount" ColumnName="PendingAmount" />
+                <ScalarProperty Name="LastBillPaidAmount" ColumnName="LastBillPaidAmount" />
+                <ScalarProperty Name="LastBillPaidDate" ColumnName="LastBillPaidDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillPayables">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.BillPayable">
+              <MappingFragment StoreEntitySet="BillPayable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="UnitConsumed" ColumnName="UnitConsumed" />
+                <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
+                <ScalarProperty Name="DateOfMeterReading" ColumnName="DateOfMeterReading" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillPayments">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.BillPayment">
+              <MappingFragment StoreEntitySet="BillPayment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+                <ScalarProperty Name="NumberOfFloor" ColumnName="NumberOfFloor" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tenants">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.Tenant">
+              <MappingFragment StoreEntitySet="Tenant">
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TenantMeterReadings">
+            <EntityTypeMapping TypeName="TenantDatabaseModel.TenantMeterReading">
+              <MappingFragment StoreEntitySet="TenantMeterReading">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="MeterReading" ColumnName="MeterReading" />
+                <ScalarProperty Name="DateOfMeterReading" ColumnName="DateOfMeterReading" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
